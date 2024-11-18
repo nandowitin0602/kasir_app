@@ -19,9 +19,20 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'username', // Kolom baru
+        'alamat',   // Kolom baru
+        'kontak',   // Kolom baru
+        'role',     // Kolom baru
         'email',
         'password',
     ];
+
+    /**
+     * The primary key associated with the table.
+     *
+     * @var string
+     */
+    protected $primaryKey = 'user_id';
 
     /**
      * The attributes that should be hidden for serialization.
@@ -41,8 +52,18 @@ class User extends Authenticatable
     protected function casts(): array
     {
         return [
-            'email_verified_at' => 'datetime',
+            // 'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
     }
+
+    // /**
+    //  * Override default identifier for authentication.
+    //  *
+    //  * @return string
+    //  */
+    // public function getAuthIdentifierName()
+    // {
+    //     return 'username'; // Gunakan kolom username untuk login
+    // }
 }
