@@ -73,7 +73,7 @@
 
         <div>
             <x-input-label for="role" :value="__('Role')" />
-            <x-text-input id="role" name="role" type="text" class="mt-1 block w-full" :value="old('role', $user->role)"
+            <x-text-input id="role" name="role" type="text" class="mt-1 block w-full" :value="old('role', ucwords(strtolower($user->role)))"
                 required autofocus autocomplete="role" readonly />
             <x-input-error class="mt-2" :messages="$errors->get('role')" />
         </div>
