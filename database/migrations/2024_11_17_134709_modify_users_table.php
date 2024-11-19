@@ -16,11 +16,11 @@ return new class extends Migration
             $table->renameColumn('id', 'user_id');
 
             // Hapus kolom email_verified_at dan remember_token
-            $table->dropColumn(['email_verified_at', 'remember_token']);
+            // $table->dropColumn(['email_verified_at', 'remember_token']);
 
             // Tambahkan kolom baru
-            $table->string('alamat')->nullable();
-            $table->string('kontak')->nullable();
+            $table->string('address')->nullable();
+            $table->string('contact')->nullable();
             $table->enum('role', ['kasir', 'pemilik usaha'])->default('kasir');
             $table->string('username')->unique();
         });
@@ -34,10 +34,10 @@ return new class extends Migration
         Schema::table('users', function (Blueprint $table) {
             // Kembalikan perubahan
             $table->renameColumn('user_id', 'id');
-            $table->timestamp('email_verified_at')->nullable();
-            $table->rememberToken();
+            // $table->timestamp('email_verified_at')->nullable();
+            // $table->rememberToken();
 
-            $table->dropColumn(['alamat', 'kontak', 'role', 'username']);
+            $table->dropColumn(['address', 'contact', 'role', 'username']);
         });
     }
 };

@@ -18,20 +18,20 @@
             <x-input-error :messages="$errors->get('username')" class="mt-2" />
         </div>
 
-        <!-- Alamat -->
+        <!-- Address -->
         <div class="mt-4">
-            <x-input-label for="alamat" :value="__('Alamat')" />
-            <x-text-input id="alamat" class="block mt-1 w-full" type="text" name="alamat" :value="old('alamat')"
+            <x-input-label for="address" :value="__('Address')" />
+            <x-text-input id="address" class="block mt-1 w-full" type="text" name="address" :value="old('address')"
                 required autocomplete="street-address" />
-            <x-input-error :messages="$errors->get('alamat')" class="mt-2" />
+            <x-input-error :messages="$errors->get('address')" class="mt-2" />
         </div>
 
-        <!-- Kontak -->
+        <!-- Contact -->
         <div class="mt-4">
-            <x-input-label for="kontak" :value="__('Kontak')" />
-            <x-text-input id="kontak" class="block mt-1 w-full" type="text" name="kontak" :value="old('kontak')"
+            <x-input-label for="contact" :value="__('Contact')" />
+            <x-text-input id="contact" class="block mt-1 w-full" type="text" name="contact" :value="old('contact')"
                 required autocomplete="tel" />
-            <x-input-error :messages="$errors->get('kontak')" class="mt-2" />
+            <x-input-error :messages="$errors->get('contact')" class="mt-2" />
         </div>
 
         <!-- Email Address -->

@@ -20,8 +20,8 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'username', // Kolom baru
-        'alamat',   // Kolom baru
-        'kontak',   // Kolom baru
+        'address',   // Kolom baru
+        'contact',   // Kolom baru
         'role',     // Kolom baru
         'email',
         'password',
@@ -52,7 +52,7 @@ class User extends Authenticatable
     protected function casts(): array
     {
         return [
-            // 'email_verified_at' => 'datetime',
+            'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
     }
