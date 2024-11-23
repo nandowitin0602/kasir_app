@@ -21,6 +21,9 @@
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+    <!-- Style tambahan -->
+    @stack('styles')
 </head>
 
 <body>
@@ -36,7 +39,8 @@
                     <a href="{{ route('dashboard') }}"
                         class="text-nowrap logo-img d-flex align-items-center text-decoration-none"
                         style="color: black; font-weight: bold;">
-                        <img src="{{ asset('images/logos/logo.png') }}" style="height: 35px; width: auto;" alt="Logo" />
+                        <img src="{{ asset('images/logos/logo.png') }}" style="height: 35px; width: auto;"
+                            alt="Logo" />
                         <span class="ms-2 fw-bold"><b>Gedhe POS</b></span>
                     </a>
                     <!-- Close Button -->
@@ -76,11 +80,11 @@
                             <span class="hide-menu">Pemilik Usaha</span>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link" href="#" aria-expanded="false">
+                            <a class="sidebar-link" href="{{ route('user.index') }}" aria-expanded="false">
                                 <span>
                                     <i class="ti ti-article"></i>
                                 </span>
-                                <span class="hide-menu">Menu Pemilik Usaha 1</span>
+                                <span class="hide-menu">User Management Kasir</span>
                             </a>
                         </li>
                     </ul>
@@ -105,7 +109,8 @@
                     </ul>
                     <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
                         <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
-                            <span class="ms-2 fw-bold"><b>{{ Auth::user()->name }} | {{ ucwords(strtolower(Auth::user()->role)) }}</b></span>
+                            <span class="ms-2 fw-bold"><b>{{ Auth::user()->name }} |
+                                    {{ ucwords(strtolower(Auth::user()->role)) }}</b></span>
                             <li class="nav-item dropdown">
                                 <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2"
                                     data-bs-toggle="dropdown" aria-expanded="false">
@@ -152,6 +157,9 @@
     <script src="{{ asset('js/sidebarmenu.js') }}"></script>
     <script src="{{ asset('js/app.min.js') }}"></script>
     <script src="{{ asset('libs/simplebar/dist/simplebar.js') }}"></script>
+
+    <!-- Script tambahan -->
+    @stack('scripts')
 </body>
 
 </html>

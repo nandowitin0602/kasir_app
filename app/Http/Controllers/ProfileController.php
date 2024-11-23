@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\Store;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -71,6 +73,14 @@ class ProfileController extends Controller
         ]);
 
         $user = $request->user();
+
+        // Cari dan hapus data di tabel store berdasarkan store_id user
+        $storeId = $user->store_id;
+        if ($storeId) {
+            User::where('store_id', $storeId)->delete();
+
+            Store::where('store_id', $storeId)->delete();
+        }
 
         Auth::logout();
 
