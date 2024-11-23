@@ -34,6 +34,22 @@
             <x-input-error :messages="$errors->get('contact')" class="mt-2" />
         </div>
 
+        <!-- Store Name -->
+        <div class="mt-4">
+            <x-input-label for="store_name" :value="__('Store Name')" />
+            <x-text-input id="store_name" class="block mt-1 w-full" type="text" name="store_name" :value="old('store_name')"
+                required autocomplete="tel" />
+            <x-input-error :messages="$errors->get('store_name')" class="mt-2" />
+        </div>
+
+        <!-- Store Address -->
+        <div class="mt-4">
+            <x-input-label for="store_address" :value="__('Store Address')" />
+            <x-text-input id="store_address" class="block mt-1 w-full" type="text" name="store_address" :value="old('store_address')"
+                required autocomplete="tel" />
+            <x-input-error :messages="$errors->get('store_address')" class="mt-2" />
+        </div>
+
         <!-- Email Address -->
         <div class="mt-4">
             <x-input-label for="email" :value="__('Email')" />

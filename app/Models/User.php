@@ -23,6 +23,7 @@ class User extends Authenticatable
         'address',   // Kolom baru
         'contact',   // Kolom baru
         'role',     // Kolom baru
+        'store_id',   // Kolom baru (Foreign Key table Store)
         'email',
         'password',
     ];
@@ -66,4 +67,9 @@ class User extends Authenticatable
     // {
     //     return 'username'; // Gunakan kolom username untuk login
     // }
+
+    public function store()
+    {
+        return $this->belongsTo(Store::class, 'store_id', 'store_id');
+    }
 }

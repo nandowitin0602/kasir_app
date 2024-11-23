@@ -18,6 +18,7 @@ class ProfileController extends Controller
     {
         return view('profile.edit', [
             'user' => $request->user(),
+            'store' => $request->user()->store,
         ]);
     }
 
@@ -35,6 +36,29 @@ class ProfileController extends Controller
         $request->user()->save();
 
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
+    }
+
+    /**
+     * Update the store's information.
+     */
+    public function updateStore(Request $request): RedirectResponse
+    {
+        $request->validate([
+            'store_name' => ['required', 'string', 'max:255'],
+            'store_address' => ['required', 'string', 'max:500'],
+        ]);
+
+        // Mengambil user yang sedang login dan memperbarui data store
+        $store = $request->user()->store;
+
+        // Memperbarui data store dengan input dari request
+        $store->store_name = $request->input('store_name');
+        $store->store_address = $request->input('store_address');
+
+        // Menyimpan perubahan pada store
+        $store->save();
+
+        return Redirect::route('profile.edit')->with('status', 'store-updated');
     }
 
     /**
