@@ -69,11 +69,11 @@
                                 <span class="hide-menu">Kasir</span>
                             </li>
                             <li class="sidebar-item">
-                                <a class="sidebar-link" href="#" aria-expanded="false">
+                                <a class="sidebar-link" href="{{ route('item.index') }}" aria-expanded="false">
                                     <span>
                                         <i class="ti ti-article"></i>
                                     </span>
-                                    <span class="hide-menu">Menu Kasir 1</span>
+                                    <span class="hide-menu">Stock Management</span>
                                 </a>
                             </li>
                         @endif

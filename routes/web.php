@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ItemController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\CheckRole;
@@ -28,6 +29,17 @@ Route::middleware('auth')->group(function () {
         Route::get('/user/{user}/edit', [UserController::class, 'edit'])->name('user.edit');
         Route::patch('/user/{user}', [UserController::class, 'update'])->name('user.update');
         Route::delete('/user/{user}', [UserController::class, 'destroy'])->name('user.destroy');
+    });
+});
+
+Route::middleware('auth')->group(function () {
+    Route::middleware(CheckRole::class . ':kasir')->group(function () {
+        Route::get('/item', [ItemController::class, 'index'])->name('item.index');
+        Route::get('/item/create', [ItemController::class, 'create'])->name('item.create');
+        Route::post('/item', [ItemController::class, 'store'])->name('item.store');
+        Route::get('/item/{item}/edit', [ItemController::class, 'edit'])->name('item.edit');
+        Route::patch('/item/{item}', [ItemController::class, 'update'])->name('item.update');
+        Route::delete('/item/{item}', [ItemController::class, 'destroy'])->name('item.destroy');
     });
 });
 
