@@ -28,7 +28,7 @@
 
 <body>
     <!--  Body Wrapper -->
-    <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+    <div class="page-wrapper show-sidebar" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
         data-sidebar-position="fixed" data-header-position="fixed">
         <!-- Sidebar Start -->
         <aside class="left-sidebar">
@@ -69,9 +69,18 @@
                                 <span class="hide-menu">Kasir</span>
                             </li>
                             <li class="sidebar-item">
+                                <a class="sidebar-link" href="{{ route('sales-transactions.index') }}"
+                                    aria-expanded="false">
+                                    <span>
+                                        <i class="ti ti-shopping-cart"></i>
+                                    </span>
+                                    <span class="hide-menu">Sales Transactions</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-item">
                                 <a class="sidebar-link" href="{{ route('item.index') }}" aria-expanded="false">
                                     <span>
-                                        <i class="ti ti-article"></i>
+                                        <i class="ti ti-forklift"></i>
                                     </span>
                                     <span class="hide-menu">Stock Management</span>
                                 </a>
@@ -104,7 +113,7 @@
             <header class="app-header">
                 <nav class="navbar navbar-expand-lg navbar-light">
                     <ul class="navbar-nav">
-                        <li class="nav-item d-block d-xl-none">
+                        <li class="nav-item d-block">
                             <a class="nav-link sidebartoggler nav-icon-hover" id="headerCollapse"
                                 href="javascript:void(0)">
                                 <i class="ti ti-menu-2"></i>

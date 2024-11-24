@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SalesTransactionController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\CheckRole;
 use Illuminate\Support\Facades\Route;
@@ -40,6 +41,12 @@ Route::middleware('auth')->group(function () {
         Route::get('/item/{item}/edit', [ItemController::class, 'edit'])->name('item.edit');
         Route::patch('/item/{item}', [ItemController::class, 'update'])->name('item.update');
         Route::delete('/item/{item}', [ItemController::class, 'destroy'])->name('item.destroy');
+    });
+});
+
+Route::middleware('auth')->group(function () {
+    Route::middleware(CheckRole::class . ':kasir')->group(function () {
+        Route::get('/sales-transactions', [SalesTransactionController::class, 'index'])->name('sales-transactions.index');
     });
 });
 

@@ -20041,7 +20041,7 @@ fieldset:disabled .btn {
     }
 }
 
-@media (max-width:1199px) {
+@media (max-width:3000px) {
 
     #main-wrapper[data-layout=vertical][data-sidebartype=full] .left-sidebar,
     #main-wrapper[data-layout=vertical][data-sidebartype=mini-sidebar] .left-sidebar {
