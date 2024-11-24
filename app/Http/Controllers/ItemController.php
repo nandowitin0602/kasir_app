@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Item;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 
 class ItemController extends Controller
 {
@@ -30,7 +31,14 @@ class ItemController extends Controller
         $cleaned_price = str_replace('.', '', $request->item_price);
 
         $request->validate([
-            'item_code' => 'required|string|max:50|unique:items,item_code',
+            'item_code' => [
+                'required',
+                'string',
+                'max:50',
+                Rule::unique('items')->where(function ($query) use ($request) {
+                    return $query->where('store_id', Auth::user()->store_id);
+                }),
+            ],
             'item_name' => 'required|string|max:200',
             'item_price' => 'required',
             'stock' => 'required|numeric|between:0,99999999.99',
@@ -43,7 +51,7 @@ class ItemController extends Controller
         $item->selling_unit = $request->selling_unit;
         $item->stock = $request->stock;
         $item->store_id = Auth::user()->store_id;
-        
+
         $item->save();
 
         return redirect()->route('item.index')->with('success', 'Item added successfully!');
@@ -61,7 +69,14 @@ class ItemController extends Controller
         $cleaned_price = str_replace('.', '', $request->item_price);
 
         $request->validate([
-            'item_code' => 'required|string|max:50|unique:items,item_code,' . $item->item_id . ',item_id',
+            'item_code' => [
+                'required',
+                'string',
+                'max:50',
+                Rule::unique('items')->ignore($item->item_id, 'item_id')->where(function ($query) use ($request) {
+                    return $query->where('store_id', Auth::user()->store_id);
+                }),
+            ],
             'item_name' => 'required|string|max:200',
             'item_price' => 'required',
             'stock' => 'required|numeric|between:0,99999999.99',

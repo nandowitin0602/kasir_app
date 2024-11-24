@@ -23,4 +23,9 @@ class Item extends Model
         'selling_unit',
         'store_id',
     ];
+
+    public function store()
+    {
+        return $this->belongsTo(Store::class, 'store_id', 'store_id');
+    }
 }

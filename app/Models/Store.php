@@ -17,4 +17,9 @@ class Store extends Model
     {
         return $this->hasMany(User::class, 'store_id', 'store_id'); // Relasi ke users
     }
+
+    public function items()
+    {
+        return $this->hasMany(Item::class, 'store_id', 'store_id'); // Relasi ke items
+    }
 }
