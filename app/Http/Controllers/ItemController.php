@@ -41,7 +41,7 @@ class ItemController extends Controller
             ],
             'item_name' => 'required|string|max:200',
             'item_price' => 'required',
-            'stock' => 'required|numeric|between:0,99999999.99',
+            'stock' => 'required|numeric|between:1,99999999.99',
         ]);
 
         $item = new Item();
@@ -79,7 +79,7 @@ class ItemController extends Controller
             ],
             'item_name' => 'required|string|max:200',
             'item_price' => 'required',
-            'stock' => 'required|numeric|between:0,99999999.99',
+            'stock' => 'required|numeric|between:1,99999999.99',
         ]);
 
         // Perbarui data item
