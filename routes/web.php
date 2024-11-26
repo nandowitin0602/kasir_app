@@ -48,13 +48,6 @@ Route::middleware('auth')->group(function () {
 Route::middleware('auth')->group(function () {
     Route::middleware(CheckRole::class . ':kasir')->group(function () {
         Route::get('/sales-transactions', [SalesTransactionController::class, 'index'])->name('sales-transactions.index');
-        Route::get('/getModalContent', function (Request $request) {
-            $itemName = $request->query('itemName');
-            $price = $request->query('price');
-            
-            return view('modal_content', compact('itemName', 'price'));
-        });
-        
     });
 });
 

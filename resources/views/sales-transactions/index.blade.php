@@ -62,8 +62,6 @@
                                     <thead class="table-success">
                                         <tr>
                                             <th class="text-center align-middle"
-                                                style="padding-top: 5px; padding-bottom: 5px;">No</th>
-                                            <th class="text-center align-middle"
                                                 style="padding-top: 5px; padding-bottom: 5px;">Item Code</th>
                                             <th class="text-center align-middle"
                                                 style="padding-top: 5px; padding-bottom: 5px;">Item Name</th>
@@ -131,15 +129,109 @@
                                 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static"
                                     data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
                                     aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-scrollable">
+                                    <div class="modal-dialog modal-dialog-scrollable modal-lg">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h1 class="modal-title fs-5" id="staticBackdropLabel">Transaction Details</h1>
+                                                <h1 class="modal-title fs-5" id="staticBackdropLabel">Transaction
+                                                    Details</h1>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                     aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body">
-                                                
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <div class="card">
+                                                            <div class="card-body">
+                                                                <div class="row mb-3">
+                                                                    <div class="col-3">
+                                                                        <p class="mb-0">Date</p>
+                                                                    </div>
+                                                                    <div class="col-4">
+                                                                        <h7
+                                                                            class="h7 fw-bold mb-0 modal-realtime-date">
+                                                                        </h7>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row mb-3">
+                                                                    <div class="col-3">
+                                                                        <p class="mb-0">Kasir</p>
+                                                                    </div>
+                                                                    <div class="col-4">
+                                                                        <h7 class="h7 fw-bold mb-0">
+                                                                            {{ Auth::user()->name }}</h7>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row mb-3">
+                                                                    <div class="table-responsive">
+                                                                        <table
+                                                                            class="table text-start align-middle table-bordered table-hover mb-0"
+                                                                            id="tableList2" style="font-size: 12px">
+                                                                            <thead class="table-success">
+                                                                                <tr>
+                                                                                    <th class="text-center align-middle"
+                                                                                        style="padding-top: 5px; padding-bottom: 5px;">
+                                                                                        No</th>
+                                                                                    <th class="text-center align-middle"
+                                                                                        style="padding-top: 5px; padding-bottom: 5px;">
+                                                                                        Item Code</th>
+                                                                                    <th class="text-center align-middle"
+                                                                                        style="padding-top: 5px; padding-bottom: 5px;">
+                                                                                        Item Name</th>
+                                                                                    <th class="text-center align-middle"
+                                                                                        style="padding-top: 5px; padding-bottom: 5px;">
+                                                                                        Qty</th>
+                                                                                    <th class="text-center align-middle"
+                                                                                        style="padding-top: 5px; padding-bottom: 5px;">
+                                                                                        Selling Unit</th>
+                                                                                    <th class="text-center align-middle"
+                                                                                        style="padding-top: 5px; padding-bottom: 5px;">
+                                                                                        Item Price</th>
+                                                                                    <th class="text-center align-middle"
+                                                                                        style="padding-top: 5px; padding-bottom: 5px;">
+                                                                                        Total Item Price</th>
+                                                                                    <th class="text-center align-middle"
+                                                                                        style="padding-top: 5px; padding-bottom: 5px;">
+                                                                                    </th>
+                                                                                </tr>
+                                                                            </thead>
+                                                                            <tbody>
+
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row mb-3">
+                                                                    <div class="col-8 text-end">
+                                                                        <p class="mb-0">Total Price of All : </p>
+                                                                    </div>
+                                                                    <div class="col-4 text-start ps-5">
+                                                                        <h5 class="h5 fw-bold mb-0">Rp 10.000,00</h5>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row mb-3">
+                                                                    <div class="col-8 text-end">
+                                                                        <p class="mb-0">The amount received :</p>
+                                                                    </div>
+                                                                    <div class="col-4 text-start ps-5">
+                                                                        <input type="text"
+                                                                            class="inputTag autoNumInputModal"
+                                                                            id="uangDiterima" style="width: 150px">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-8 text-end">
+                                                                        <p class="mb-0">The amount returned :</p>
+                                                                    </div>
+                                                                    <div class="col-4 text-start ps-5">
+                                                                        <input type="text"
+                                                                            class="inputTag" readonly
+                                                                            id="uangKembali" style="width: 150px">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary"
@@ -158,6 +250,16 @@
 
         @push('styles')
             <style>
+                .inputTag {
+                    height: 25px;
+                    width: 60px;
+                    padding: 5px;
+                    font-size: 12px;
+                    border-radius: .375rem;
+                    border: 1px solid #ced4da;
+                    background-color: #f8f9fa;
+                }
+
                 .card {
                     margin-bottom: 10px;
                 }
@@ -262,6 +364,36 @@
                 });
             </script>
 
+            {{-- Datatable untuk table 3 --}}
+            <script type="text/javascript">
+                $(document).ready(function() {
+                    var table = $('#tableList2').DataTable({
+                        createdRow: function(row, data, dataIndex) {
+                            $(row).find('td').css('padding', '5px');
+                        },
+                        scrollY: '200px',
+                        scrollCollapse: true,
+                        scrollX: false,
+                        autoWidth: true,
+                        searching: false,
+                        columnDefs: [{
+                            targets: -1,
+                            orderable: false
+                        }]
+                    });
+
+                    // Menyesuaikan kolom setelah modal dibuka
+                    $('#staticBackdrop').on('shown.bs.modal', function() {
+                        table.columns.adjust().draw(); // Memperbarui kolom
+                    });
+
+                    // Menunggu sedikit waktu sebelum menyesuaikan kolom
+                    setTimeout(function() {
+                        table.columns.adjust().draw();
+                    }, 100); // Delay 10ms
+                });
+            </script>
+
             {{-- Datetime Js (Realtime) --}}
             <script>
                 function updateClock() {
@@ -276,7 +408,7 @@
                     };
 
                     // Format waktu
-                    const formattedDate = now.toLocaleDateString('en-US', options);
+                    const formattedDate = now.toLocaleDateString('id-ID', options);
                     const formattedTime = now.toLocaleTimeString('en-US', {
                         hour: '2-digit',
                         minute: '2-digit',
@@ -285,6 +417,12 @@
 
                     document.getElementById("realtime-date").textContent = formattedDate;
                     document.getElementById("realtime-clock").textContent = formattedTime;
+
+                    // Update elemen di dalam modal
+                    const modalDateElements = document.querySelectorAll(".modal-realtime-date");
+                    modalDateElements.forEach((element) => {
+                        element.textContent = formattedDate;
+                    });
                 }
 
                 updateClock();
@@ -308,14 +446,14 @@
                     // Cek apakah item_code sudah ada di tabel kedua
                     var exists = false;
                     $("#tableList1 tbody tr").each(function() {
-                        if ($(this).find("td").eq(1).text() === itemCode) {
+                        if ($(this).find("td").eq(0).text() === itemCode) {
                             exists = true;
                             return false;
                         }
                     });
 
                     if (exists) {
-                        alert("Item code sudah ada di tabel kedua!");
+                        alert("The item code already exists in the second table!");
                         return;
                     }
 
@@ -325,12 +463,10 @@
                     var totalPrice = qty * itemPrice;
 
                     table.row.add([
-                        table.rows().count() + 1, // Nomor urut
                         itemCode,
                         itemName,
                         stock,
-                        `<input type="text" name="qty" required class="qty-input" 
-                            style="height: 25px;width:60px;padding: 5px;font-size: 12px;border-radius: .375rem;border: 1px solid #ced4da;background-color: #f8f9fa;" />`,
+                        `<input type="text" name="qty" required class="qty-input inputTag" />`,
                         sellingUnit,
                         itemPrice.toFixed(2), // Harga item
                         totalPrice.toFixed(2), // Total harga
@@ -339,10 +475,10 @@
                         </button>`
                     ]).draw(false);
 
-                    // // Menyisipkan baris yang baru dibuat di posisi pertama
-                    // table.rows().every(function() {
-                    //     this.node().parentNode.insertBefore(this.node(), this.node().parentNode.firstChild);
-                    // });
+                    // Menyisipkan baris yang baru dibuat di posisi pertama
+                    table.rows().every(function() {
+                        this.node().parentNode.insertBefore(this.node(), this.node().parentNode.firstChild);
+                    });
 
                     autoNum();
                 });
@@ -373,10 +509,16 @@
 
                     var qty = parseFloat(qtyInput.val());
 
+                    var stock = parseFloat(row.find("td").eq(2).text());
+                    if (qty > stock) {
+                        alert("Stock is insufficient!");
+                        return;
+                    }
+
                     // Update total item price (baris yang diedit)
-                    var itemPrice = parseFloat(row.find("td").eq(6).text());
+                    var itemPrice = parseFloat(row.find("td").eq(5).text());
                     var totalPrice = qty * itemPrice;
-                    row.find("td").eq(7).text(totalPrice.toFixed(2));
+                    row.find("td").eq(6).text(totalPrice.toFixed(2));
 
                     // Update total harga untuk seluruh baris
                     updateTotalHarga();
@@ -389,7 +531,7 @@
                     // Iterasi melalui setiap baris dalam tabel
                     $("#tableList1 tbody tr").each(function() {
                         var row = $(this);
-                        var rowTotalPrice = parseFloat(row.find("td").eq(7).text()); // Ambil total price dari kolom ke-7
+                        var rowTotalPrice = parseFloat(row.find("td").eq(6).text()); // Ambil total price dari kolom ke-7
                         if (!isNaN(rowTotalPrice)) {
                             totalHarga += rowTotalPrice;
                         } else {
@@ -426,6 +568,18 @@
             </script>
 
             {{-- Js di dalam Modal Box --}}
+            <script>
+                // Inisialisasi AutoNumeric untuk satu input
+                new AutoNumeric('.autoNumInputModal', {
+                    maximumValue: '999999999999',
+                    minimumValue: '0',
+                    decimalPlaces: '0',
+                    decimalCharacter: ',',
+                    digitGroupSeparator: '.',
+                    unformatOnSubmit: true
+                });
 
+                
+            </script>
         @endpush
 </x-app-layout>
