@@ -18,7 +18,7 @@
                                     class="col-sm-2 col-form-label text-nowrap" />
                                 <div class="col-sm-10">
                                     <x-text-input id="item_code" name="item_code" type="text" class="form-control"
-                                        :value="old('item_code', $item->item_code)" required />
+                                        :value="old('item_code', $item->item_code)" required autofocus />
                                     <x-input-error class="mt-2" :messages="$errors->get('item_code')" />
                                 </div>
                             </div>
