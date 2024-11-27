@@ -23,6 +23,7 @@ class ItemFactory extends Factory
             'item_price' => $this->faker->randomFloat(2, 10, 10000),
             'stock' => $this->faker->randomFloat(2, 10, 10000),
             'selling_unit' => $this->faker->randomElement(['/kg', '/satuan']),
+            'is_deleted' => $this->faker->randomElement(['y', 'n']),
             'created_at' => now(),
             'updated_at' => now(),
             'store_id' => Store::inRandomOrder()->first()->store_id,

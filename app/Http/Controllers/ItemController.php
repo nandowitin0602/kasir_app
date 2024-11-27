@@ -49,6 +49,7 @@ class ItemController extends Controller
         $item->item_name = $request->item_name;
         $item->item_price = $cleaned_price;
         $item->selling_unit = $request->selling_unit;
+        $item->is_deleted = 'n';
         $item->stock = $request->stock;
         $item->store_id = Auth::user()->store_id;
 
@@ -94,11 +95,19 @@ class ItemController extends Controller
         return redirect()->route('item.index')->with('status', 'Item updated successfully.');
     }
 
-    // Hapus item
+    // Update item is_deleted
     public function destroy(Item $item)
     {
-        $item->delete();
+        if ($item->is_deleted == 'y') {
+            $item->update([
+                'is_deleted' => 'n'
+            ]);
+        } else {
+            $item->update([
+                'is_deleted' => 'y'
+            ]);
+        }
 
-        return redirect()->route('item.index')->with('status', 'Item deleted successfully.');
+        return redirect()->route('item.index')->with('status', 'Item updated successfully.');
     }
 }

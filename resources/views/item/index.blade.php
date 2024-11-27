@@ -32,6 +32,7 @@
                                 <th>Item Price</th>
                                 <th>Selling Unit</th>
                                 <th>Stock</th>
+                                <th>Is Deleted</th>
                                 <th>Create At</th>
                                 <th>Action</th>
                             </tr>
@@ -44,6 +45,7 @@
                                     <td>{{ $item->item_price }}</td>
                                     <td>{{ $item->selling_unit }}</td>
                                     <td>{{ $item->stock }}</td>
+                                    <td>{{ $item->is_deleted }}</td>
                                     <td>{{ $item->created_at }}</td>
                                     <td class="d-flex gap-1">
                                         <a class="btn btn-warning btn-sm" href="{{ route('item.edit', $item) }}"
@@ -54,10 +56,18 @@
                                             @csrf
                                             @method('delete')
 
-                                            <button type="submit" class="btn btn-danger btn-sm" style="width: 60px;"
-                                                onclick="return confirm('Are you sure you want to delete this item?')">
-                                                Delete
-                                            </button>
+                                            @if ($item->is_deleted == 'n')
+                                                <button type="submit" class="btn btn-danger btn-sm"
+                                                    style="width: 90px;"
+                                                    onclick="return confirm('Are you sure you want to delete this item?')">
+                                                    Non-Active
+                                                </button>
+                                            @else
+                                                <button type="submit" class="btn btn-success btn-sm"
+                                                    style="width: 90px;">
+                                                    Active
+                                                </button>
+                                            @endif
                                         </form>
                                     </td>
                                 </tr>

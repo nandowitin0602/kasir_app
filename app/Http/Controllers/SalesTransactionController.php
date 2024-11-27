@@ -13,7 +13,9 @@ class SalesTransactionController extends Controller
     {
         $storeId = Auth::user()->store_id; // Ambil store_id dari pengguna yang sedang login
 
-        $items = Item::where('store_id', $storeId)->get();
+        $items = Item::where('store_id', $storeId)
+        ->where('is_deleted', 'n')
+        ->get();
 
         return view('sales-transactions.index', compact('items'));
     }

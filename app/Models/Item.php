@@ -21,6 +21,7 @@ class Item extends Model
         'item_price',
         'stock',
         'selling_unit',
+        'is_deleted',
         'store_id',
     ];
 
