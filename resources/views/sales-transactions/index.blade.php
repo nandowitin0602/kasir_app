@@ -120,8 +120,7 @@
                             <div class="d-flex justify-between">
                                 <button type="button" class="btn btn-danger mb-0 buttonReset">Reset</button>
                                 <!-- Button trigger modal -->
-                                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                    data-bs-target="#staticBackdrop">
+                                <button type="button" class="btn btn-primary buttonPay">
                                     Pay
                                 </button>
 
@@ -189,9 +188,6 @@
                                                                                     <th class="text-center align-middle"
                                                                                         style="padding-top: 5px; padding-bottom: 5px;">
                                                                                         Total Item Price</th>
-                                                                                    <th class="text-center align-middle"
-                                                                                        style="padding-top: 5px; padding-bottom: 5px;">
-                                                                                    </th>
                                                                                 </tr>
                                                                             </thead>
                                                                             <tbody>
@@ -205,7 +201,8 @@
                                                                         <p class="mb-0">Total Price of All : </p>
                                                                     </div>
                                                                     <div class="col-4 text-start ps-5">
-                                                                        <h5 class="h5 fw-bold mb-0">Rp 10.000,00</h5>
+                                                                        <h5 class="h5 fw-bold mb-0 totalHargaModal">
+                                                                        </h5>
                                                                     </div>
                                                                 </div>
                                                                 <div class="row mb-3">
@@ -223,9 +220,9 @@
                                                                         <p class="mb-0">The amount returned :</p>
                                                                     </div>
                                                                     <div class="col-4 text-start ps-5">
-                                                                        <input type="text"
-                                                                            class="inputTag" readonly
-                                                                            id="uangKembali" style="width: 150px">
+                                                                        <input type="text" class="inputTag"
+                                                                            readonly id="uangKembali"
+                                                                            style="width: 150px">
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -579,7 +576,83 @@
                     unformatOnSubmit: true
                 });
 
-                
+                // Event handler untuk tombol Pay
+                $(".buttonPay").click(function(event) {
+                    var table = $("#tableList1").DataTable();
+                    var table1 = $("#tableList2").DataTable();
+
+                    if (table.rows().count() === 0) {
+                        alert("No items have been purchased.");
+                        event.preventDefault();
+                    } else {
+                        var cekQty = true;
+                        $("#tableList1 tbody tr").each(function() {
+                            var row = $(this);
+                            var rowTotalPrice = parseFloat(row.find("td").eq(6)
+                                .text());
+                            if (rowTotalPrice === 0 || isNaN(rowTotalPrice)) {
+                                cekQty = false;
+                                return false;
+                            }
+                        });
+
+                        if (!cekQty) {
+                            alert("Qty is empty or 0!");
+                            event.preventDefault();
+                        } else {
+                            table1.clear();
+
+                            table.rows().every(function(rowIdx, tableLoop, rowLoop) {
+                                var data = this.node();
+                                var itemCode = $(data).find("td").eq(0).text();
+                                var itemName = $(data).find("td").eq(1).text();
+                                var qtyInput = $(data).find("td").eq(3).find("input").val();
+                                var sellingUnit = $(data).find("td").eq(4).text();
+                                var itemPrice = $(data).find("td").eq(5).text();
+                                var totalItemPrice = $(data).find("td").eq(6).text();
+
+                                var newRow = [
+                                    rowIdx + 1,
+                                    itemCode,
+                                    itemName,
+                                    `<input type="text" value="${qtyInput}" name="" readonly class="form-control inputTag">`,
+                                    sellingUnit,
+                                    itemPrice,
+                                    totalItemPrice
+                                ];
+
+                                table1.row.add(newRow);
+                            });
+
+                            table1.draw();
+
+                            $(".totalHargaModal").text($(".totalHarga").text());
+
+                            $('#staticBackdrop').modal('show');
+                        }
+                    }
+                });
+
+                $("#uangDiterima").on("input", function() {
+                    var uangDiterima = $(this).val().replace(/[^\d,-]/g, ''); // Menghapus karakter selain angka dan koma
+
+                    var totalHargaModal = $(".totalHargaModal").text()
+                        .replace(/[^\d,-]/g, '') // Menghapus simbol selain angka dan koma
+                        .replace(',', '.'); // Ganti koma desimal menjadi titik
+
+                    uangDiterima = parseFloat(uangDiterima) || 0;
+                    totalHargaModal = parseFloat(totalHargaModal) || 0;
+
+                    var uangKembali = uangDiterima - totalHargaModal;
+
+                    if (uangKembali <= 0) {
+                        uangKembali = 0;
+                    }
+
+                    var uangKembaliFormatted = uangKembali.toLocaleString('id-ID'); // Format angka dengan pemisah ribuan
+
+                    $("#uangKembali").val(uangKembaliFormatted);
+                });
             </script>
         @endpush
 </x-app-layout>
