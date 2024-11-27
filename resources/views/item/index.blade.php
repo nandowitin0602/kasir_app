@@ -47,9 +47,9 @@
                                     <td class="text-center align-middle">{{ $item->stock }}</td>
                                     <td class="text-center align-middle">
                                         @if ($item->is_deleted == 'n')
-                                            <div class="shadow-lg text-center bg-success rounded pt-1 pb-1">Active</div>
+                                            <div class="shadow-lg text-center bg-success rounded pt-1 pb-1 text-white btn btn-sm">Active</div>
                                         @else
-                                            <div class="shadow-lg text-center bg-danger rounded pt-1 pb-1">Non-Active
+                                            <div class="shadow-lg text-center bg-danger rounded pt-1 pb-1 text-white btn btn-sm">Non-Active
                                             </div>
                                         @endif
                                     </td>
