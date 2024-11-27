@@ -22,4 +22,9 @@ class Store extends Model
     {
         return $this->hasMany(Item::class, 'store_id', 'store_id'); // Relasi ke items
     }
+
+    public function transactions()
+    {
+        return $this->hasMany(Transaction::class, 'store_id', 'store_id'); // Relasi ke transactions
+    }
 }

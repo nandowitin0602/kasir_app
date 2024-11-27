@@ -29,4 +29,9 @@ class Item extends Model
     {
         return $this->belongsTo(Store::class, 'store_id', 'store_id');
     }
+
+    public function transactionDetails()
+    {
+        return $this->hasMany(TransactionDetail::class, 'item_id', 'item_id');
+    }
 }

@@ -4,6 +4,20 @@
             <h3 class="h4 fw-semibold mb-4">Sales Transactions</h3>
         </div>
 
+        @if (session('success'))
+            <div class="alert alert-info alert-dismissible fade show" role="alert">
+                {{ session('success') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
+
+        @if (session('error'))
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                {{ session('error') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
+
         <div class="row">
             {{-- Kolom 1 --}}
             <div class="col-12 col-xl-8">
@@ -129,113 +143,125 @@
                                     data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
                                     aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-scrollable modal-lg">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h1 class="modal-title fs-5" id="staticBackdropLabel">Transaction
-                                                    Details</h1>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                    aria-label="Close"></button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <div class="row">
-                                                    <div class="col-12">
-                                                        <div class="card">
-                                                            <div class="card-body">
-                                                                <div class="row mb-3">
-                                                                    <div class="col-3">
-                                                                        <p class="mb-0">Date</p>
-                                                                    </div>
-                                                                    <div class="col-4">
-                                                                        <h7
-                                                                            class="h7 fw-bold mb-0 modal-realtime-date">
-                                                                        </h7>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="row mb-3">
-                                                                    <div class="col-3">
-                                                                        <p class="mb-0">Kasir</p>
-                                                                    </div>
-                                                                    <div class="col-4">
-                                                                        <h7 class="h7 fw-bold mb-0">
-                                                                            {{ Auth::user()->name }}</h7>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="row mb-3">
-                                                                    <div class="table-responsive">
-                                                                        <table
-                                                                            class="table text-start align-middle table-bordered table-hover mb-0"
-                                                                            id="tableList2" style="font-size: 12px">
-                                                                            <thead class="table-success">
-                                                                                <tr>
-                                                                                    <th class="text-center align-middle"
-                                                                                        style="padding-top: 5px; padding-bottom: 5px;">
-                                                                                        No</th>
-                                                                                    <th class="text-center align-middle"
-                                                                                        style="padding-top: 5px; padding-bottom: 5px;">
-                                                                                        Item Code</th>
-                                                                                    <th class="text-center align-middle"
-                                                                                        style="padding-top: 5px; padding-bottom: 5px;">
-                                                                                        Item Name</th>
-                                                                                    <th class="text-center align-middle"
-                                                                                        style="padding-top: 5px; padding-bottom: 5px;">
-                                                                                        Qty</th>
-                                                                                    <th class="text-center align-middle"
-                                                                                        style="padding-top: 5px; padding-bottom: 5px;">
-                                                                                        Selling Unit</th>
-                                                                                    <th class="text-center align-middle"
-                                                                                        style="padding-top: 5px; padding-bottom: 5px;">
-                                                                                        Item Price</th>
-                                                                                    <th class="text-center align-middle"
-                                                                                        style="padding-top: 5px; padding-bottom: 5px;">
-                                                                                        Total Item Price</th>
-                                                                                </tr>
-                                                                            </thead>
-                                                                            <tbody>
+                                        <form action="{{ route('sales-transactions.store') }}" method="post">
+                                            @csrf
 
-                                                                            </tbody>
-                                                                        </table>
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Transaction
+                                                        Details</h1>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="row">
+                                                        <div class="col-12">
+                                                            <div class="card">
+                                                                <div class="card-body">
+                                                                    <div class="row mb-3">
+                                                                        <div class="col-3">
+                                                                            <p class="mb-0">Date</p>
+                                                                        </div>
+                                                                        <div class="col-4">
+                                                                            <h7
+                                                                                class="h7 fw-bold mb-0 modal-realtime-date">
+                                                                            </h7>
+                                                                        </div>
                                                                     </div>
-                                                                </div>
-                                                                <div class="row mb-3">
-                                                                    <div class="col-8 text-end">
-                                                                        <p class="mb-0">Total Price of All : </p>
+                                                                    <div class="row mb-3">
+                                                                        <div class="col-3">
+                                                                            <p class="mb-0">Kasir</p>
+                                                                        </div>
+                                                                        <div class="col-4">
+                                                                            <h7 class="h7 fw-bold mb-0">
+                                                                                {{ Auth::user()->name }}</h7>
+                                                                        </div>
                                                                     </div>
-                                                                    <div class="col-4 text-start ps-5">
-                                                                        <h5 class="h5 fw-bold mb-0 totalHargaModal">
-                                                                        </h5>
+                                                                    <div class="row mb-3">
+                                                                        <div class="table-responsive">
+                                                                            <table
+                                                                                class="table text-start align-middle table-bordered table-hover mb-0"
+                                                                                id="tableList2"
+                                                                                style="font-size: 12px">
+                                                                                <thead class="table-success">
+                                                                                    <tr>
+                                                                                        <th class="text-center align-middle"
+                                                                                            style="padding-top: 5px; padding-bottom: 5px;">
+                                                                                            No</th>
+                                                                                        <th class="text-center align-middle"
+                                                                                            style="padding-top: 5px; padding-bottom: 5px;">
+                                                                                            Item Code</th>
+                                                                                        <th class="text-center align-middle"
+                                                                                            style="padding-top: 5px; padding-bottom: 5px;">
+                                                                                            Item Name</th>
+                                                                                        <th class="text-center align-middle"
+                                                                                            style="padding-top: 5px; padding-bottom: 5px;">
+                                                                                            Qty</th>
+                                                                                        <th class="text-center align-middle"
+                                                                                            style="padding-top: 5px; padding-bottom: 5px;">
+                                                                                            Selling Unit</th>
+                                                                                        <th class="text-center align-middle"
+                                                                                            style="padding-top: 5px; padding-bottom: 5px;">
+                                                                                            Item Price</th>
+                                                                                        <th class="text-center align-middle"
+                                                                                            style="padding-top: 5px; padding-bottom: 5px;">
+                                                                                            Total Item Price</th>
+                                                                                    </tr>
+                                                                                </thead>
+                                                                                <tbody>
+
+                                                                                </tbody>
+                                                                            </table>
+                                                                        </div>
                                                                     </div>
-                                                                </div>
-                                                                <div class="row mb-3">
-                                                                    <div class="col-8 text-end">
-                                                                        <p class="mb-0">The amount received :</p>
+                                                                    <div class="row mb-3">
+                                                                        <div class="col-8 text-end">
+                                                                            <p class="mb-0">Total Price of All : </p>
+                                                                        </div>
+                                                                        <div class="col-4 text-start ps-5">
+                                                                            <h5
+                                                                                class="h5 fw-bold mb-0 totalHargaModal">
+                                                                            </h5>
+                                                                            <input type="hidden" name="total_price"
+                                                                                value="0"
+                                                                                class="totalHargaModalInput">
+                                                                        </div>
                                                                     </div>
-                                                                    <div class="col-4 text-start ps-5">
-                                                                        <input type="text"
-                                                                            class="inputTag autoNumInputModal"
-                                                                            id="uangDiterima" style="width: 150px">
+                                                                    <div class="row mb-3">
+                                                                        <div class="col-8 text-end">
+                                                                            <p class="mb-0">The amount received :</p>
+                                                                        </div>
+                                                                        <div class="col-4 text-start ps-5">
+                                                                            <input type="text"
+                                                                                class="inputTag autoNumInputModal"
+                                                                                id="uangDiterima" style="width: 150px"
+                                                                                required autocomplete="off">
+                                                                        </div>
                                                                     </div>
-                                                                </div>
-                                                                <div class="row">
-                                                                    <div class="col-8 text-end">
-                                                                        <p class="mb-0">The amount returned :</p>
-                                                                    </div>
-                                                                    <div class="col-4 text-start ps-5">
-                                                                        <input type="text" class="inputTag"
-                                                                            readonly id="uangKembali"
-                                                                            style="width: 150px">
+                                                                    <div class="row">
+                                                                        <div class="col-8 text-end">
+                                                                            <p class="mb-0">The amount returned :</p>
+                                                                        </div>
+                                                                        <div class="col-4 text-start ps-5">
+                                                                            <input type="text" class="inputTag"
+                                                                                readonly id="uangKembali"
+                                                                                style="width: 150px">
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-bs-dismiss="modal">Cancel</button>
+                                                    <button type="submit"
+                                                        onclick="return confirm('Can you check if the payment matches the bill ?')"
+                                                        class="btn btn-primary">Confirmation</button>
+                                                </div>
                                             </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary"
-                                                    data-bs-dismiss="modal">Cancel</button>
-                                                <button type="button" class="btn btn-primary">Confirmation</button>
-                                            </div>
-                                        </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -463,7 +489,7 @@
                         itemCode,
                         itemName,
                         stock,
-                        `<input type="text" name="qty" required class="qty-input inputTag" />`,
+                        `<input type="text" name="qty" required class="qty-input inputTag" autocomplete="off" />`,
                         sellingUnit,
                         itemPrice.toFixed(2), // Harga item
                         totalPrice.toFixed(2), // Total harga
@@ -615,7 +641,8 @@
                                     rowIdx + 1,
                                     itemCode,
                                     itemName,
-                                    `<input type="text" value="${qtyInput}" name="" readonly class="form-control inputTag">`,
+                                    `<input type="text" value="${qtyInput}" name="quantity[]" readonly class="form-control inputTag">
+                                    <input type="hidden" name="item_code[]" value="${itemCode}">`,
                                     sellingUnit,
                                     itemPrice,
                                     totalItemPrice
@@ -644,6 +671,9 @@
                     totalHargaModal = parseFloat(totalHargaModal) || 0;
 
                     var uangKembali = uangDiterima - totalHargaModal;
+
+                    console.log(totalHargaModal);
+                    $(".totalHargaModalInput").val(totalHargaModal);
 
                     if (uangKembali <= 0) {
                         uangKembali = 0;

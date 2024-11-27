@@ -48,6 +48,7 @@ Route::middleware('auth')->group(function () {
 Route::middleware('auth')->group(function () {
     Route::middleware(CheckRole::class . ':kasir')->group(function () {
         Route::get('/sales-transactions', [SalesTransactionController::class, 'index'])->name('sales-transactions.index');
+        Route::post('/sales-transactions', [SalesTransactionController::class, 'store'])->name('sales-transactions.store');
     });
 });
 

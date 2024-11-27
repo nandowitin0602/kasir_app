@@ -27,48 +27,58 @@
                     <table class="table text-start align-middle table-bordered table-hover mb-0" id="tableList">
                         <thead class="table-success">
                             <tr>
-                                <th>Item Code</th>
-                                <th>Item Name</th>
-                                <th>Item Price</th>
-                                <th>Selling Unit</th>
-                                <th>Stock</th>
-                                <th>Is Deleted</th>
-                                <th>Create At</th>
-                                <th>Action</th>
+                                <th class="text-center align-middle">Item Code</th>
+                                <th class="text-center align-middle">Item Name</th>
+                                <th class="text-center align-middle">Item Price</th>
+                                <th class="text-center align-middle">Selling Unit</th>
+                                <th class="text-center align-middle">Stock</th>
+                                <th class="text-center align-middle">Is Deleted</th>
+                                <th class="text-center align-middle">Create At</th>
+                                <th class="text-center align-middle">Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($items as $item)
                                 <tr>
-                                    <td>{{ $item->item_code }}</td>
-                                    <td>{{ $item->item_name }}</td>
-                                    <td>{{ $item->item_price }}</td>
-                                    <td>{{ $item->selling_unit }}</td>
-                                    <td>{{ $item->stock }}</td>
-                                    <td>{{ $item->is_deleted }}</td>
-                                    <td>{{ $item->created_at }}</td>
-                                    <td class="d-flex gap-1">
-                                        <a class="btn btn-warning btn-sm" href="{{ route('item.edit', $item) }}"
-                                            style="width: 60px;">
-                                            Edit
-                                        </a>
-                                        <form action="{{ route('item.destroy', $item) }}" method="post">
-                                            @csrf
-                                            @method('delete')
+                                    <td class="text-center align-middle">{{ $item->item_code }}</td>
+                                    <td class="text-center align-middle">{{ $item->item_name }}</td>
+                                    <td class="text-center align-middle">{{ $item->item_price }}</td>
+                                    <td class="text-center align-middle">{{ $item->selling_unit }}</td>
+                                    <td class="text-center align-middle">{{ $item->stock }}</td>
+                                    <td class="text-center align-middle">
+                                        @if ($item->is_deleted == 'n')
+                                            <div class="shadow-lg text-center bg-success rounded pt-1 pb-1">Active</div>
+                                        @else
+                                            <div class="shadow-lg text-center bg-danger rounded pt-1 pb-1">Non-Active
+                                            </div>
+                                        @endif
+                                    </td>
+                                    <td class="text-center align-middle">{{ $item->created_at }}</td>
+                                    <td class="text-center align-middle">
+                                        <div class="d-flex justify-content-center align-items-center">
+                                            <a class="btn btn-warning btn-sm" href="{{ route('item.edit', $item) }}"
+                                                style="width: 60px;">
+                                                Edit
+                                            </a>
+                                            <form action="{{ route('item.destroy', $item) }}" method="post"
+                                                class="ml-2">
+                                                @csrf
+                                                @method('delete')
 
-                                            @if ($item->is_deleted == 'n')
-                                                <button type="submit" class="btn btn-danger btn-sm"
-                                                    style="width: 90px;"
-                                                    onclick="return confirm('Are you sure you want to delete this item?')">
-                                                    Non-Active
-                                                </button>
-                                            @else
-                                                <button type="submit" class="btn btn-success btn-sm"
-                                                    style="width: 90px;">
-                                                    Active
-                                                </button>
-                                            @endif
-                                        </form>
+                                                @if ($item->is_deleted == 'n')
+                                                    <button type="submit" class="btn btn-danger btn-sm"
+                                                        style="width: 90px;"
+                                                        onclick="return confirm('Are you sure you want to non-active this item?')">
+                                                        Non-Active
+                                                    </button>
+                                                @else
+                                                    <button type="submit" class="btn btn-success btn-sm"
+                                                        style="width: 90px;">
+                                                        Active
+                                                    </button>
+                                                @endif
+                                            </form>
+                                        </div>
                                     </td>
                                 </tr>
                             @endforeach

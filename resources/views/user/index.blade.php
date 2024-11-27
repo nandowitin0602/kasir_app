@@ -27,36 +27,39 @@
                     <table class="table text-start align-middle table-bordered table-hover mb-0" id="tableList">
                         <thead class="table-success">
                             <tr>
-                                <th>Name</th>
-                                <th>Username</th>
-                                <th>Email</th>
-                                <th>Address</th>
-                                <th>Contact</th>
-                                <th>Action</th>
+                                <th class="text-center align-middle">Name</th>
+                                <th class="text-center align-middle">Username</th>
+                                <th class="text-center align-middle">Email</th>
+                                <th class="text-center align-middle">Address</th>
+                                <th class="text-center align-middle">Contact</th>
+                                <th class="text-center align-middle">Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($users as $user)
                                 <tr>
-                                    <td>{{ $user->name }}</td>
-                                    <td>{{ $user->username }}</td>
-                                    <td>{{ $user->email }}</td>
-                                    <td>{{ $user->address }}</td>
-                                    <td>{{ $user->contact }}</td>
-                                    <td class="d-flex gap-1">
-                                        <a class="btn btn-warning btn-sm" href="{{ route('user.edit', $user) }}"
-                                            style="width: 60px;">
-                                            Edit
-                                        </a>
-                                        <form action="{{ route('user.destroy', $user) }}" method="post">
-                                            @csrf
-                                            @method('delete')
+                                    <td class="text-center align-middle">{{ $user->name }}</td>
+                                    <td class="text-center align-middle">{{ $user->username }}</td>
+                                    <td class="text-center align-middle">{{ $user->email }}</td>
+                                    <td class="text-center align-middle">{{ $user->address }}</td>
+                                    <td class="text-center align-middle">{{ $user->contact }}</td>
+                                    <td class="text-center align-middle" class="d-flex gap-1">
+                                        <div class="d-flex justify-content-center align-items-center">
+                                            <a class="btn btn-warning btn-sm" href="{{ route('user.edit', $user) }}"
+                                                style="width: 60px;">
+                                                Edit
+                                            </a>
+                                            <form action="{{ route('user.destroy', $user) }}" method="post" class="ml-2">
+                                                @csrf
+                                                @method('delete')
 
-                                            <button type="submit" class="btn btn-danger btn-sm" style="width: 60px;"
-                                                onclick="return confirm('Are you sure you want to delete this user?')">
-                                                Delete
-                                            </button>
-                                        </form>
+                                                <button type="submit" class="btn btn-danger btn-sm"
+                                                    style="width: 60px;"
+                                                    onclick="return confirm('Are you sure you want to delete this user?')">
+                                                    Delete
+                                                </button>
+                                            </form>
+                                        </div>
                                     </td>
                                 </tr>
                             @endforeach

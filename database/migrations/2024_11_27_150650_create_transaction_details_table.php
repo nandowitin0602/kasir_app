@@ -14,14 +14,14 @@ return new class extends Migration
         Schema::create('transaction_details', function (Blueprint $table) {
             $table->id('transaction_detail_id');
             $table->unsignedBigInteger('transaction_id');
-            $table->unsignedBigInteger('item_id');
+            $table->unsignedBigInteger('item_id')->nullable();
             $table->decimal('quantity', 10, 2);
             $table->decimal('total_price', 10, 2);
 
             // Foreign key untuk transaction_id dengan onDelete cascade
             $table->foreign('transaction_id')->references('transaction_id')->on('transactions')->onDelete('cascade');
             // Foreign key untuk item_id
-            $table->foreign('item_id')->references('item_id')->on('items')->onDelete('cascade');
+            $table->foreign('item_id')->references('item_id')->on('items')->onDelete('set null');
         });
     }
 
