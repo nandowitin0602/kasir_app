@@ -3,13 +3,20 @@
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SalesTransactionController;
+use App\Http\Controllers\TransactionReport;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\CheckRole;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return redirect()->route('login');
+    return redirect()->route('landing-pages');
+});
+
+Route::middleware('guest')->group(function () {
+    Route::get('/landing', function () {
+        return view('landing');
+    })->name('landing-pages');
 });
 
 Route::get('/dashboard', function () {
@@ -31,6 +38,13 @@ Route::middleware('auth')->group(function () {
         Route::get('/user/{user}/edit', [UserController::class, 'edit'])->name('user.edit');
         Route::patch('/user/{user}', [UserController::class, 'update'])->name('user.update');
         Route::delete('/user/{user}', [UserController::class, 'destroy'])->name('user.destroy');
+    });
+});
+
+Route::middleware('auth')->group(function () {
+    Route::middleware(CheckRole::class . ':pemilik usaha')->group(function () {
+        Route::get('/transaction-report', [TransactionReport::class, 'index'])->name('transaction-report.index');
+        Route::get('/transaction-report/{transaction}/details', [TransactionReport::class, 'details'])->name('transaction-report.details');
     });
 });
 

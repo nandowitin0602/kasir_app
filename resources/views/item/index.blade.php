@@ -2,7 +2,7 @@
     <div class="container-fluid">
         <div class="card">
             <div class="card-body">
-                <h1 class="card-title fw-semibold mb-4">List Barang</h1>
+                <h1 class="card-title fw-semibold mb-4">Item List</h1>
                 <div class="mb-4">
                     @if (session('success'))
                         <div class="alert alert-info alert-dismissible fade show" role="alert">

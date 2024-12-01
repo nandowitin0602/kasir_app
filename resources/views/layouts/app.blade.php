@@ -28,8 +28,8 @@
 
 <body>
     <!--  Body Wrapper -->
-    <div class="page-wrapper show-sidebar" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
-        data-sidebar-position="fixed" data-header-position="fixed">
+    <div class="page-wrapper show-sidebar" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6"
+        data-sidebartype="full" data-sidebar-position="fixed" data-header-position="fixed">
         <!-- Sidebar Start -->
         <aside class="left-sidebar">
             <!-- Sidebar scroll-->
@@ -90,6 +90,15 @@
                             <li class="nav-small-cap">
                                 <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
                                 <span class="hide-menu">Pemilik Usaha</span>
+                            </li>
+                            <li class="sidebar-item">
+                                <a class="sidebar-link" href="{{ route('transaction-report.index') }}"
+                                    aria-expanded="false">
+                                    <span>
+                                        <i class="ti ti-clipboard-data"></i>
+                                    </span>
+                                    <span class="hide-menu">Transaction Report</span>
+                                </a>
                             </li>
                             <li class="sidebar-item">
                                 <a class="sidebar-link" href="{{ route('user.index') }}" aria-expanded="false">
