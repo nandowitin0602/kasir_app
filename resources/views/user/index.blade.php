@@ -27,22 +27,22 @@
                     <table class="table text-start align-middle table-bordered table-hover mb-0" id="tableList">
                         <thead class="table-success">
                             <tr>
-                                <th class="text-center align-middle">Name</th>
-                                <th class="text-center align-middle">Username</th>
-                                <th class="text-center align-middle">Email</th>
-                                <th class="text-center align-middle">Address</th>
-                                <th class="text-center align-middle">Contact</th>
+                                <th class="text-start align-middle">Name</th>
+                                <th class="text-start align-middle">Username</th>
+                                <th class="text-start align-middle">Email</th>
+                                <th class="text-start align-middle">Address</th>
+                                <th class="text-start align-middle">Contact</th>
                                 <th class="text-center align-middle">Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($users as $user)
                                 <tr>
-                                    <td class="text-center align-middle">{{ $user->name }}</td>
-                                    <td class="text-center align-middle">{{ $user->username }}</td>
-                                    <td class="text-center align-middle">{{ $user->email }}</td>
-                                    <td class="text-center align-middle">{{ $user->address }}</td>
-                                    <td class="text-center align-middle">{{ $user->contact }}</td>
+                                    <td class="text-start align-middle">{{ $user->name }}</td>
+                                    <td class="text-start align-middle">{{ $user->username }}</td>
+                                    <td class="text-start align-middle">{{ $user->email }}</td>
+                                    <td class="text-start align-middle">{{ $user->address }}</td>
+                                    <td class="text-start align-middle">{{ $user->contact }}</td>
                                     <td class="text-center align-middle" class="d-flex gap-1">
                                         <div class="d-flex justify-content-center align-items-center">
                                             <a class="btn btn-warning btn-sm" href="{{ route('user.edit', $user) }}"

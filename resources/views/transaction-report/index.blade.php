@@ -7,7 +7,7 @@
                 <form action="{{ route('transaction-report.index') }}" method="get" id="transaction-form">
                     <div class="row mb-2">
                         <x-input-label for="dateTimeAwal" :value="__('From')" class="col-sm-2 col-form-label text-nowrap" />
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             <x-text-input id="dateTimeAwal" name="dateTimeAwal" type="text"
                                 class="form-control inputTag" :value="request('dateTimeAwal')" autocomplete="off" />
                             <x-input-error class="mt-2" :messages="$errors->get('dateTimeAwal')" />
@@ -17,7 +17,7 @@
                     <div class="row mb-3">
                         <x-input-label for="dateTimeAkhir" :value="__('To')"
                             class="col-sm-2 col-form-label text-nowrap" />
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             <x-text-input id="dateTimeAkhir" name="dateTimeAkhir" type="text"
                                 class="form-control inputTag" :value="request('dateTimeAkhir')" autocomplete="off" />
                             <x-input-error class="mt-2" :messages="$errors->get('dateTimeAkhir')" />
@@ -37,7 +37,7 @@
                 <div class="row mb-4">
                     <x-input-label for="totalPriceFilter" :value="__('Total All Price')"
                         class="col-sm-2 col-form-label text-nowrap" />
-                    <div class="col-sm-4">
+                    <div class="col-sm-3">
                         <x-text-input id="totalPriceFilter" name="totalPriceFilter" type="text"
                             class="form-control inputTag" :value="$totalAllPrice" readonly />
                         <x-input-error class="mt-2" :messages="$errors->get('totalPriceFilter')" />
@@ -59,7 +59,7 @@
                                 <tr>
                                     <td class="text-center align-middle">{{ $transaction->transaction_id }}</td>
                                     <td class="text-center align-middle">{{ $transaction->transaction_date }}</td>
-                                    <td class="text-center align-middle">Rp
+                                    <td class="text-end align-middle">Rp
                                         {{ number_format($transaction->total_price, 0, ',', '.') }}</td>
                                     <td class="text-center align-middle">
                                         <a class="btn btn-info btn-sm"
@@ -97,12 +97,13 @@
 
             .inputTag {
                 height: 35px;
-                width: 200px;
+                /* width: 200px; */
                 padding: 5px;
                 font-size: 14px;
                 border-radius: .375rem;
                 border: 1px solid #ced4da;
                 background-color: #f8f9fa;
+                display: block;
             }
 
             .ui-datepicker select {

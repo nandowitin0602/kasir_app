@@ -11,6 +11,7 @@
                                 <th class="text-center align-middle">Transaction Detail ID</th>
                                 <th class="text-center align-middle">Item Name</th>
                                 <th class="text-center align-middle">Item Price</th>
+                                <th class="text-center align-middle">Selling Unit</th>
                                 <th class="text-center align-middle">Quantity</th>
                                 <th class="text-center align-middle">Total Price</th>
                             </tr>
@@ -20,11 +21,14 @@
                                 <tr>
                                     <td class="text-center align-middle">
                                         {{ $transaction_detail->transaction_detail_id }}</td>
-                                    <td class="text-center align-middle">{{ $transaction_detail->item->item_name }}</td>
-                                    <td class="text-center align-middle">Rp {{ number_format($transaction_detail->item->item_price, 0, ',', '.') }}
+                                    <td class="text-start align-middle">{{ $transaction_detail->item->item_name }}</td>
+                                    <td class="text-end align-middle">Rp
+                                        {{ number_format($transaction_detail->item->item_price, 0, ',', '.') }}
                                     </td>
+                                    <td class="text-start align-middle">{{ $transaction_detail->item->selling_unit }}</td>
                                     <td class="text-center align-middle">{{ $transaction_detail->quantity }}</td>
-                                    <td class="text-center align-middle">Rp {{ number_format($transaction_detail->total_price, 0, ',', '.') }}</td>
+                                    <td class="text-end align-middle">Rp
+                                        {{ number_format($transaction_detail->total_price, 0, ',', '.') }}</td>
                                 </tr>
                             @endforeach
                         </tbody>
