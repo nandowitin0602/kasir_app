@@ -25,8 +25,9 @@
                     </div>
 
                     <div class="row mb-4">
-                        <div class="col-sm-6">
-                            <div class="d-flex justify-content-center">
+                        <div class="col-sm-5">
+                            <div class="d-flex justify-between">
+                                <button type="button" class="btn btn-danger me-1" id="buttonReset">Reset</button>
                                 <button type="submit" class="btn btn-primary">Filter</button>
                             </div>
                         </div>
@@ -34,11 +35,11 @@
                 </form>
 
                 <div class="row mb-4">
-                    <x-input-label for="totalPriceFilter" :value="__('Total Price')"
+                    <x-input-label for="totalPriceFilter" :value="__('Total All Price')"
                         class="col-sm-2 col-form-label text-nowrap" />
                     <div class="col-sm-4">
                         <x-text-input id="totalPriceFilter" name="totalPriceFilter" type="text"
-                            class="form-control inputTag" :value="$totalPrice" readonly />
+                            class="form-control inputTag" :value="$totalAllPrice" readonly />
                         <x-input-error class="mt-2" :messages="$errors->get('totalPriceFilter')" />
                     </div>
                 </div>
@@ -58,7 +59,8 @@
                                 <tr>
                                     <td class="text-center align-middle">{{ $transaction->transaction_id }}</td>
                                     <td class="text-center align-middle">{{ $transaction->transaction_date }}</td>
-                                    <td class="text-center align-middle">{{ $transaction->total_price }}</td>
+                                    <td class="text-center align-middle">Rp
+                                        {{ number_format($transaction->total_price, 0, ',', '.') }}</td>
                                     <td class="text-center align-middle">
                                         <a class="btn btn-info btn-sm"
                                             href="{{ route('transaction-report.details', $transaction) }}"
@@ -165,10 +167,15 @@
 
                     // Jika dateTimeAwal lebih besar dari dateTimeAkhir, tampilkan alert dan hentikan submit
                     if (awal > akhir) {
-                        alert('Tanggal mulai (From) tidak boleh lebih besar dari tanggal akhir (To).');
+                        alert('The start date (From) cannot be greater than the end date (To).');
                         event.preventDefault(); // Mencegah form untuk submit
                     }
                 }
+            });
+
+            $('#buttonReset').click(function(){
+                $('#dateTimeAwal').val("");
+                $('#dateTimeAkhir').val("");
             });
         </script>
     @endpush

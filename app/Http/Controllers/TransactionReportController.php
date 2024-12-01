@@ -7,7 +7,7 @@ use App\Models\TransactionDetail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class TransactionReport extends Controller
+class TransactionReportController extends Controller
 {
     // Menampilkan view transactions report
     public function index(Request $request)
@@ -33,9 +33,11 @@ class TransactionReport extends Controller
         $transactions = $query->get();
 
         // Hitung jumlah total_price dari transaksi yang sesuai dengan filter
-        $totalPrice = $query->sum('total_price');
+        $totalAllPrice = $query->sum('total_price');
 
-        return view('transaction-report.index', compact('transactions', 'totalPrice'));
+        $totalAllPrice = "Rp " . number_format($totalAllPrice, 0, ',', '.');
+
+        return view('transaction-report.index', compact('transactions', 'totalAllPrice'));
     }
 
 

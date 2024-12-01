@@ -42,7 +42,7 @@
                                 <tr>
                                     <td class="text-center align-middle">{{ $item->item_code }}</td>
                                     <td class="text-center align-middle">{{ $item->item_name }}</td>
-                                    <td class="text-center align-middle">{{ $item->item_price }}</td>
+                                    <td class="text-center align-middle text-nowrap">Rp {{ number_format($item->item_price, 0, ',', '.') }}</td>
                                     <td class="text-center align-middle">{{ $item->selling_unit }}</td>
                                     <td class="text-center align-middle">{{ $item->stock }}</td>
                                     <td class="text-center align-middle">

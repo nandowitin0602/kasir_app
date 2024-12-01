@@ -21,10 +21,10 @@
                                     <td class="text-center align-middle">
                                         {{ $transaction_detail->transaction_detail_id }}</td>
                                     <td class="text-center align-middle">{{ $transaction_detail->item->item_name }}</td>
-                                    <td class="text-center align-middle">{{ $transaction_detail->item->item_price }}
+                                    <td class="text-center align-middle">Rp {{ number_format($transaction_detail->item->item_price, 0, ',', '.') }}
                                     </td>
                                     <td class="text-center align-middle">{{ $transaction_detail->quantity }}</td>
-                                    <td class="text-center align-middle">{{ $transaction_detail->total_price }}</td>
+                                    <td class="text-center align-middle">Rp {{ number_format($transaction_detail->total_price, 0, ',', '.') }}</td>
                                 </tr>
                             @endforeach
                         </tbody>

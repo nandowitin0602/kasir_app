@@ -3,10 +3,9 @@
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SalesTransactionController;
-use App\Http\Controllers\TransactionReport;
+use App\Http\Controllers\TransactionReportController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\CheckRole;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -43,8 +42,8 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware('auth')->group(function () {
     Route::middleware(CheckRole::class . ':pemilik usaha')->group(function () {
-        Route::get('/transaction-report', [TransactionReport::class, 'index'])->name('transaction-report.index');
-        Route::get('/transaction-report/{transaction}/details', [TransactionReport::class, 'details'])->name('transaction-report.details');
+        Route::get('/transaction-report', [TransactionReportController::class, 'index'])->name('transaction-report.index');
+        Route::get('/transaction-report/{transaction}/details', [TransactionReportController::class, 'details'])->name('transaction-report.details');
     });
 });
 
