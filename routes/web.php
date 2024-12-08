@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SalesTransactionController;
@@ -18,9 +19,18 @@ Route::middleware('guest')->group(function () {
     })->name('landing-pages');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/dashboard/totalSalesToday', [DashboardController::class, 'totalSalesToday'])->name('dashboard.totalSalesToday');
+    Route::get('/dashboard/totalSuccessfulTransactionsToday', [DashboardController::class, 'totalSuccessfulTransactionsToday'])->name('dashboard.totalSuccessfulTransactionsToday');
+    Route::get('/dashboard/outofStockorNearlyOutofStock', [DashboardController::class, 'outofStockorNearlyOutofStock'])->name('dashboard.outofStockorNearlyOutofStock');
+    Route::get('/dashboard/monthlySales', [DashboardController::class, 'monthlySales'])->name('dashboard.monthlySales');
+    Route::get('/dashboard/topItems', [DashboardController::class, 'topItems'])->name('dashboard.topItems');
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
