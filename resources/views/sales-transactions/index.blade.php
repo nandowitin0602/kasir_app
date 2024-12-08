@@ -464,7 +464,7 @@
                     var itemName = row.find("td").eq(1).text();
                     var itemPrice = parseFloat(row.find("td").eq(2).text());
                     var sellingUnit = row.find("td").eq(3).text();
-                    var stock = parseInt(row.find("td").eq(4).text());
+                    var stock = parseFloat(row.find("td").eq(4).text());
 
                     // Cek apakah item_code sudah ada di tabel kedua
                     var exists = false;
