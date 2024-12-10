@@ -39,7 +39,14 @@ class ItemController extends Controller
                     return $query->where('store_id', Auth::user()->store_id);
                 }),
             ],
-            'item_name' => 'required|string|max:200',
+            'item_name' => [
+                'required',
+                'string',
+                'max:200',
+                Rule::unique('items')->where(function ($query) use ($request) {
+                    return $query->where('store_id', Auth::user()->store_id);
+                }),
+            ],
             'item_price' => 'required',
             'stock' => 'required|numeric|between:1,99999999.99',
         ]);
@@ -78,7 +85,14 @@ class ItemController extends Controller
                     return $query->where('store_id', Auth::user()->store_id);
                 }),
             ],
-            'item_name' => 'required|string|max:200',
+            'item_name' => [
+                'required',
+                'string',
+                'max:200',
+                Rule::unique('items')->ignore($item->item_id, 'item_id')->where(function ($query) use ($request) {
+                    return $query->where('store_id', Auth::user()->store_id);
+                }),
+            ],
             'item_price' => 'required',
             'stock' => 'required|numeric|between:1,99999999.99',
         ]);

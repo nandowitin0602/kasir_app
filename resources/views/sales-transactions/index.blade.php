@@ -256,9 +256,8 @@
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary"
                                                         data-bs-dismiss="modal">Cancel</button>
-                                                    <button type="submit"
-                                                        onclick="return confirm('Can you check if the payment matches the bill ?')"
-                                                        class="btn btn-primary">Confirmation</button>
+                                                    <button type="submit" class="btn btn-primary"
+                                                        id="submitBtn">Confirmation</button>
                                                 </div>
                                             </div>
                                         </form>
@@ -682,6 +681,31 @@
                     var uangKembaliFormatted = uangKembali.toLocaleString('id-ID'); // Format angka dengan pemisah ribuan
 
                     $("#uangKembali").val(uangKembaliFormatted);
+                });
+
+                $(document).ready(function() {
+                    $("#submitBtn").click(function(event) {
+                        var uangDiterima = $("#uangDiterima").val().replace(/[^\d,-]/g, '');
+
+                        var totalHargaModal = $(".totalHargaModal").text()
+                            .replace(/[^\d,-]/g, '') // Menghapus simbol selain angka dan koma
+                            .replace(',', '.'); // Ganti koma desimal menjadi titik
+                        console.log(uangDiterima + " dan " + totalHargaModal);
+                        uangDiterima = parseFloat(uangDiterima) || 0;
+                        totalHargaModal = parseFloat(totalHargaModal) || 0;
+
+                        var uangKembali = uangDiterima - totalHargaModal;
+                        console.log(uangKembali);
+                        if (uangKembali < 0) {
+                            alert("Insufficient payment amount!");
+                            event.preventDefault(); // Membatalkan submit form
+                        } else {
+                            var confirmation = confirm('Can you check if the payment matches the bill ?');
+                            if (!confirmation) {
+                                event.preventDefault(); // Membatalkan submit form jika user memilih 'Cancel'
+                            }
+                        }
+                    });
                 });
             </script>
         @endpush
